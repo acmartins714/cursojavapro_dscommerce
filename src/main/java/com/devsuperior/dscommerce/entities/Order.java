@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 import java.time.Instant;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -89,6 +90,19 @@ public class Order {
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Order order = (Order) o;
+        return Objects.equals(id, order.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+    @Override
     public String toString() {
         return "Order{" +
                 "id=" + id +
@@ -96,6 +110,7 @@ public class Order {
                 ", status=" + status +
                 ", client=" + client +
                 ", payment=" + payment +
+                ", items=" + items +
                 '}';
     }
 
